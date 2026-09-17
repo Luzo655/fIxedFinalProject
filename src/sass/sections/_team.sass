@@ -1,0 +1,48 @@
+@use "../lib" as *
+
+.team-card
+  @include card
+  height: 100%
+  padding: 36px 35px
+  background: $white
+
+  &__top
+    display: flex
+    align-items: start
+    gap: 20px
+    padding-bottom: 28px
+    border-bottom: 1px solid $dark
+
+    > div
+      flex: 1
+      align-self: end
+
+  &__avatar
+    flex: 0 0 106px
+    width: 106px
+    height: 103px
+    border: 0
+    object-fit: contain
+
+  h3, p
+    margin-bottom: 0
+
+  h3
+    font-size: 20px
+
+  &__bio
+    padding-top: 28px
+
+  .linkedin svg
+    display: block
+    width: 34px
+    height: 34px
+    aspect-ratio: 1
+    --linkedin-bg: #{$dark}
+    --linkedin-fg: #{$green}
+
+#team
+  .row
+    @include media(desktop)
+      --bs-gutter-x: 40px
+      --bs-gutter-y: 40px
