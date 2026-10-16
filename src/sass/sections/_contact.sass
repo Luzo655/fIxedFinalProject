@@ -1,60 +1,135 @@
 @use "../lib" as *
 
-.contact-panel
-  position: relative
-  overflow: hidden
-  padding: 40px 30px
-  border-radius: $radius
-  background: $grey
+.contact
+  padding: 0 0 100px
 
-  @include media(desktop)
+  &__container
+    @include container
+
+  &__header
     display: flex
     align-items: center
-    justify-content: space-between
-    min-height: 773px
-    padding: 60px 0 80px 100px
+    gap: 40px
+    margin-bottom: 80px
+    flex-wrap: wrap
 
-  form
-    position: relative
-    z-index: 1
-    width: 100%
-    max-width: 560px
+    .section__title
+      @include text-highlight
+      color: $dark
+      margin: 0
 
-  .mb-4:not(fieldset)
-    display: flex
-    flex-direction: column
-    gap: 5px
-    margin-bottom: 25px !important
-
-  .form-label
+  &__subtitle
+    max-width: 260px
+    font-size: 18px
+    line-height: 1.4
+    color: $text
     margin: 0
 
+  &__card
+    position: relative
+    overflow: hidden
+    padding: 40px 20px
+    background-color: $grey
+    border-radius: $radius
+
+    @include media(tablet)
+      padding: 50px 70px 55px
+
+    @include media(desktop)
+      padding: 50px 70px 55px
+
+  &__form
+    position: relative
+    z-index: 2
+    display: flex
+    flex-direction: column
+    gap: 25px
+    max-width: 386px
+
+  &__radios
+    display: flex
+    align-items: center
+    gap: 25px
+
+  &__radio
+    display: flex
+    align-items: center
+    gap: 10px
+    margin: 0
+    padding: 0
+    min-height: 0
+
+    .form-check-input
+      flex-shrink: 0
+      float: none
+      width: 22px
+      height: 22px
+      margin: 0
+      border: 1px solid $dark
+      background-color: $white
+      background-image: none
+      cursor: pointer
+      transition: background-color 0.2s ease
+
+      &:checked
+        background-color: $white
+        background-image: radial-gradient(circle, $green 0 6px, transparent 6.5px)
+        border-color: $dark
+
+      &:focus
+        border-color: $dark
+        box-shadow: 0 0 0 3px rgba($green, .35)
+
+    .form-check-label
+      font-size: 14px
+      line-height: 1
+      cursor: pointer
+
+  &__field
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+  &__label
+    font-size: 14px
+    line-height: 1
+
   .form-control
-    min-height: 59px
-    padding: 18px 30px
+    padding: 0 20px
+    min-height: 40px
     border: 1px solid $dark
     border-radius: 14px
+    background-color: $white
+    color: $text
+    font-family: inherit
+    font-size: 14px
+
+    &::placeholder
+      color: rgba($dark, .45)
 
     &:focus
-      border-color: $green
+      border-color: $dark
+      background-color: $white
 
   textarea.form-control
-    min-height: 190px
+    min-height: 130px
+    padding: 14px 20px
+    resize: none
 
-  .form-check-input
-    &:checked
-      border-color: $dark
-      background-color: $green
+  .button
+    width: 100%
+    min-height: 47px
+    margin-top: 10px
 
-    &:focus
-      border-color: $green
-
-  &__art
+  &__image
     display: none
 
     @include media(desktop)
       display: block
-      width: 692px
-      height: 649px
-      margin-right: -325px
-      object-fit: contain
+      position: absolute
+      top: 50%
+      right: 0
+      transform: translateY(-50%)
+      max-width: 400px
+      height: auto
+      z-index: 1

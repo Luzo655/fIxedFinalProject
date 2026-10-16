@@ -1,65 +1,127 @@
 @use "../lib" as *
 
-.process-accordion
-  display: grid
-  gap: 20px
+.process
+  padding: 0 0 100px
 
-  @include media(desktop)
+  &__container
+    @include container
+
+  &__header
+    display: flex
+    align-items: center
+    gap: 40px
+    margin-bottom: 80px
+    flex-wrap: wrap
+
+    .section__title
+      @include text-highlight
+      color: $dark
+      margin: 0
+
+  &__subtitle
+    max-width: 320px
+    font-size: 18px
+    line-height: 1.4
+    color: $text
+    margin: 0
+
+  &__list
+    display: flex
+    flex-direction: column
     gap: 30px
 
-  .accordion-item
+  &__item
     @include card
+    background-color: $grey
     overflow: hidden
-    background: $grey
+    transition: background-color 0.2s ease
 
-    &:has(.accordion-button:not(.collapsed))
-      background: $green
+    &:has(.process__button:not(.collapsed))
+      background-color: $green
 
-  .accordion-button
-    gap: 24px
-    padding: 25px 30px
-    background: transparent
-    box-shadow: none
+  &__heading
+    margin: 0
+    font-size: inherit
+    line-height: inherit
+
+  &__button
+    display: flex
+    align-items: center
+    gap: 20px
+    width: 100%
+    padding: 24px 20px
+    border: 0
+    background: none
     color: $dark
-    font-size: 18px
+    font-family: inherit
+    text-align: left
+    cursor: pointer
+
+    @include media(tablet)
+      gap: 25px
+      padding: 30px 35px
+
+  &__number
+    font-size: 36px
     font-weight: 500
+    line-height: 1
 
-    @include media(desktop)
-      min-height: 159px
-      padding: 40px 60px
-      font-size: 30px
-
-    &::after
-      display: grid
-      place-items: center
-      flex: 0 0 50px
-      width: 50px
-      height: 50px
-      box-sizing: border-box
-      margin-left: auto
-      padding: 0
-      border: 1px solid $dark
-      border-radius: 50%
-      background: none
-      content: "+"
-      font-size: 38px
-      font-weight: 300
-      line-height: 1
-
-    &:not(.collapsed)::after
-      content: "−"
-      transform: none
-
-  .step-number
-    font-size: 30px
-
-    @include media(desktop)
+    @include media(tablet)
       font-size: 60px
 
-  .accordion-body
-    margin: 0 30px
-    padding: 30px 0 40px
+  &__name
+    flex: 1
+    font-size: 18px
+    font-weight: 500
+    line-height: 1.2
+
+    @include media(tablet)
+      font-size: 30px
+
+  &__icon
+    position: relative
+    flex-shrink: 0
+    width: 41px
+    height: 41px
+    border: 1px solid $dark
+    border-radius: 50%
+    background-color: transparent
+    transition: background-color 0.2s ease
+
+    &::before,
+    &::after
+      content: ""
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 16px
+      height: 2px
+      background-color: $dark
+      transform: translate(-50%, -50%)
+      transition: transform 0.2s ease
+
+    &::after
+      transform: translate(-50%, -50%) rotate(90deg)
+
+  &__button:not(.collapsed) &__icon
+    background-color: $white
+
+    &::after
+      transform: translate(-50%, -50%) rotate(0deg)
+
+  &__body
+    margin: 0 20px
+    padding: 24px 0 30px
     border-top: 1px solid $dark
 
-    @include media(desktop)
-      margin: 0 60px
+    @include media(tablet)
+      margin: 0 35px
+      padding: 30px 0 45px
+
+    p
+      margin: 0
+      font-size: 16px
+      line-height: 1.4
+
+      @include media(tablet)
+        font-size: 18px

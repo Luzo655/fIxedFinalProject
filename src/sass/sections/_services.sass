@@ -1,107 +1,166 @@
 @use "../lib" as *
 
+.services
+  padding: 40px 0 60px
+
+  @include media(desktop)
+    padding: 80px 0
+
+  &__container
+    @include container
+
+  &__header
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: 15px 40px
+    margin-bottom: 40px
+
+    @include media(desktop)
+      margin-bottom: 80px
+
+    .section__title
+      @include text-highlight
+      color: $dark
+      margin: 0
+
+  &__subtitle
+    max-width: 580px
+    font-size: 16px
+    line-height: 1.5
+    color: $text
+    margin: 0
+
+    @include media(tablet)
+      font-size: 18px
+
+  &__grid
+    display: grid
+    grid-template-columns: 1fr
+    gap: 20px
+
+    @include media(tablet)
+      gap: 30px
+
+    @include media(desktop)
+      grid-template-columns: repeat(2, 1fr)
+      gap: 40px
+
+
 .service-card
   @include card
+  padding: 25px 20px
   display: flex
   justify-content: space-between
-  align-items: flex-end
-  gap: 10px
-  width: 100%
-  min-width: 0
-  min-height: 320px
-  padding: 40px
+  align-items: center
+  gap: 15px
+  position: relative
   overflow: hidden
-  background: $grey
+
+  @include media(tablet)
+    padding: 40px
 
   @include media(desktop)
-    align-items: center
-    min-height: 310px
     padding: 50px
 
-  &--green
-    background: $green
+  &__content
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 100%
+    z-index: 2
 
-  &--dark
-    background: $dark
-    color: $white
+  &__title
+    font-size: 22px
+    font-weight: 600
+    line-height: 1.2
+    margin-bottom: 30px
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 2px
 
-  h3
+    @include media(tablet)
+      font-size: 26px
+
+    @include media(desktop)
+      font-size: 30px
+      margin-bottom: 40px
+
+  &__title-bg
     @include text-highlight
-    margin: 0
     color: $dark
 
-  &--green h3
-    background: $white
+    &--white
+      background: $white
 
-  &__content
-    position: relative
-    z-index: 1
+  &__link
+    display: flex
+    align-items: center
+    gap: 15px
+    background: none
+    color: $dark
+    font-weight: 500
+
+    &:hover,
+    &:focus-visible
+      color: $dark
+
+    &--white
+      color: $white
+
+      &:hover,
+      &:focus-visible
+        color: $white
+
+  &__link-text
+    background: none
+    padding: 0
+
+  &__arrow
+    flex-shrink: 0
+    width: 41px
+    height: 41px
+    background-color: $dark
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: transform 0.2s ease
+
+    &--white
+      background-color: $white
+
+  &__arrow-icon
+    filter: brightness(0) invert(99%) sepia(19%) saturate(2926%) hue-rotate(29deg) brightness(93%) contrast(128%)
+
+  &__arrow--white &__arrow-icon
+    filter: brightness(0)
+
+  &__link:hover &__arrow,
+  &__link:focus-visible &__arrow
+    transform: rotate(45deg)
+
+  &__image-wrapper
+    flex: 0 1 210px
     min-width: 0
-    align-self: stretch
 
-  &__art
-    flex: 0 1 165px
-    align-self: flex-end
-    width: min(48%, 165px)
-    height: 165px
-    object-fit: contain
+  &__image
+    display: block
+    width: 100%
+    max-width: 210px
+    height: auto
+    margin-left: auto
 
-    @include media(desktop)
-      flex-basis: 210px
-      align-self: center
-      width: 210px
-      height: 210px
+  &--light
+    background-color: $grey
 
-  .icon-link
-    position: absolute
-    bottom: 0
-    left: 0
+  &--green
+    background-color: $green
 
-    &:hover, &:focus-visible
-      color: inherit
+    .service-card__title-bg
+      background: $white
 
-    &__label
-      display: none
-
-      @include media(desktop)
-        display: inline
-
-    &__circle
-      flex: 0 0 41px
-
-.cta-card
-  position: relative
-  display: flex
-  align-items: center
-  min-height: 347px
-  padding: 45px
-  overflow: visible
-  border-radius: $radius
-  background: $grey
-
-  @include media(desktop)
-    padding: 60px
-
-  &__content
-    z-index: 1
-    max-width: 500px
-
-  &__art
-    display: none
-
-    @include media(desktop)
-      position: absolute
-      right: 9%
-      display: block
-      width: 359px
-      height: 394px
-      object-fit: contain
-
-  .button
-    margin-top: 14px
-
-#services
-  .row
-    @include media(desktop)
-      --bs-gutter-x: 40px
-      --bs-gutter-y: 40px
+  &--dark
+    background-color: $dark
+    color: $white
